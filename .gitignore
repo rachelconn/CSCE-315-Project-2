@@ -420,6 +420,10 @@ healthchecksdb
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 
-#Temp folder from unity
-Calculator/Temp
+#Unity folders
+Calculator/Temp/
+Calculator/Library/
+Calculator/UnityGenerated/
+Calculator/Logs/
+
 # End of https://www.gitignore.io/api/unity,visualstudio,visualstudiocode

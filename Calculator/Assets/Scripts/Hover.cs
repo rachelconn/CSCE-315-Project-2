@@ -4,5 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    
+    float timeHovered;
+    private void Update() {
+    }
 }
