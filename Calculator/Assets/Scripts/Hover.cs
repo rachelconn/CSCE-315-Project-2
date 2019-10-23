@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
+
 public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     bool hovering;
@@ -43,8 +45,10 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         hovering = false;
     }
 
-    void buttonClicked()
+    public void buttonClicked()
     {
-        throw new System.Exception("lol");
+        TextMeshProUGUI tmp = gameObject.GetComponentInChildren<TextMeshProUGUI>();
+        string datum = tmp.text.Trim();
+        CalculatorInputManager.inputSequence += datum;
     }
 }
