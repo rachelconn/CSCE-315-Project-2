@@ -59,11 +59,11 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if (datum == "=")
             {
                 CalculatorDisplayController.Evaluate();
+                CalculatorInputManager.evaluated = true;
             }
             else
             {
                 CalculatorInputManager.inputSequence += datum;
-                CalculatorInputManager.evaluated = true;
             }
         }
     }
