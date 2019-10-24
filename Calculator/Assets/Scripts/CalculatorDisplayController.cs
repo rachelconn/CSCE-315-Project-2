@@ -20,7 +20,7 @@ public class CalculatorDisplayController : MonoBehaviour
     /// When called, read input from CalculatorInputManager and add the output of the sequence
     /// to the string.
     /// EG: if CalculatorInputManager.inputSequence = "15+30=", then when the function is complete
-    /// it inputSequence should be "15+30=45" or "45" based on team design vote
+    /// it inputSequence should be"45" based on team design vote
     /// </summary>
     public static void Evaluate()
     {

@@ -56,12 +56,15 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
-            CalculatorInputManager.inputSequence += datum;
-        }
-        
-        if (datum == "=")
-        {
-            CalculatorDisplayController.Evaluate();
+            if (datum == "=")
+            {
+                CalculatorDisplayController.Evaluate();
+            }
+            else
+            {
+                CalculatorInputManager.inputSequence += datum;
+                CalculatorInputManager.evaluated = true;
+            }
         }
     }
 }
