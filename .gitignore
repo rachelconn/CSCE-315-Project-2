@@ -145,7 +145,6 @@ StyleCopReport.xml
 *_p.c
 *_h.h
 *.ilk
-*.meta
 *.obj
 *.iobj
 *.pch
@@ -419,11 +418,5 @@ healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
-
-#Unity folders
-Calculator/Temp/
-Calculator/Library/
-Calculator/UnityGenerated/
-Calculator/Logs/
 
 # End of https://www.gitignore.io/api/unity,visualstudio,visualstudiocode
