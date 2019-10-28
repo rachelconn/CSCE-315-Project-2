@@ -24,7 +24,7 @@ public class CalculatorDisplayController : MonoBehaviour
     /// </summary>
     /// 
 
-    private static String ToTilda(String equation)
+    private static string ToTilda(string equation)
     {
         string retval = "";
         char[] mdas = { '*', '/', '+', '-' };
@@ -48,7 +48,7 @@ public class CalculatorDisplayController : MonoBehaviour
     public static void Evaluate()
     {
         string textToEvaluate = CalculatorInputManager.inputSequence;
-
+        Debug.Log(textToEvaluate);
         //Set up the variables 
         textToEvaluate = ToTilda(textToEvaluate);
         char[] md = { '*', '/' };
@@ -162,6 +162,6 @@ public class CalculatorDisplayController : MonoBehaviour
         }
 
         // just do it ✔
-        throw new System.NotImplementedException();
+        CalculatorInputManager.inputSequence = textToEvaluate;
     }
 }

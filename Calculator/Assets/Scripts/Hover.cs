@@ -49,6 +49,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         TextMeshProUGUI tmp = gameObject.GetComponentInChildren<TextMeshProUGUI>();
         string datum = tmp.text.Trim();
+        Debug.Log(datum);
         if (CalculatorInputManager.evaluated)
         {
             CalculatorInputManager.inputSequence = datum;
