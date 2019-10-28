@@ -7,6 +7,6 @@ using TMPro;
 
 public static class CalculatorInputManager
 {
-    public static string inputSequence;
+    public static string inputSequence = "";
     public static bool evaluated = false;
 }

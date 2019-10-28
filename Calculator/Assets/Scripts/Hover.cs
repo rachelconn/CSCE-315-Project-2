@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using System;
 
 public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -64,7 +65,16 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
             else
             {
-                CalculatorInputManager.inputSequence += datum;
+                if (datum != "←")
+                {
+                    CalculatorInputManager.inputSequence += datum;
+                }
+                else
+                {
+                    string old = CalculatorInputManager.inputSequence;
+                    old = old.Substring(0, Math.Max(old.Length - 1, 0));
+                    CalculatorInputManager.inputSequence = old;
+                }
             }
         }
     }
