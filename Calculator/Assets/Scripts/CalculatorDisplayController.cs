@@ -25,41 +25,20 @@ public class CalculatorDisplayController : MonoBehaviour
     /// </summary>
     /// 
 
-    private static string ToTilda(string equation)
-    {
-        string retval = "";
-        char[] mdas = { '*', '/', '+', '-' };
-
-        // Loop through the string.
-        for (int i = 0; i < equation.Length; ++i)
-        {
-            // Change dashes to a tilda, unless they are used as negative signs.
-            if (equation[i].Equals('-') && i > 0 && equation[i - 1].ToString().IndexOfAny(mdas) == -1)
-            {
-                retval += '~';
-            }
-            else
-            {
-                retval += equation[i];
-            }
-        }
-        return retval;
-    }
-
     public static string Add(string param) {
         if (!param.Contains("+")) {
             return Subtract(param);
         }
         string[] result = param.Split(new char[] {'+'}, 2);
-        return (decimal.Parse(result[0]) + decimal.Parse(Add(result[1]))).ToString();
+        return (decimal.Parse(Subtract(result[0])) + decimal.Parse(Add(result[1]))).ToString();
     }
 
     public static string Subtract(string param) {
         if (!param.Contains("-")) {
-            return param;
+            return Multiply(param);
         }
         string[] result = param.Split(new char[] {'-'}, 2);
-        return (decimal.Parse(result[0]) - decimal.Parse(Subtract(result[1]))).ToString();
+        return (decimal.Parse(Multiply(result[0])) - decimal.Parse(Subtract(result[1]))).ToString();
 
     }
     public static string Multiply(string param) {
@@ -67,14 +46,14 @@ public class CalculatorDisplayController : MonoBehaviour
             return Divide(param);
         }
         string[] result = param.Split(new char[] {'×'}, 2);
-        return (decimal.Parse(result[0]) * decimal.Parse(Multiply(result[1]))).ToString();
+        return (decimal.Parse(Divide(result[0])) * decimal.Parse(Multiply(result[1]))).ToString();
     }
 
     public static string Divide(string param) {
         if (!param.Contains("÷")) {
-            return Add(param);
+            return param;
         }
-        string[] result = param.Split(new char[] {'×'}, 2);
+        string[] result = param.Split(new char[] { '÷' }, 2);
         return (decimal.Parse(result[0]) / decimal.Parse(Divide(result[1]))).ToString();
     }
 
@@ -82,6 +61,13 @@ public class CalculatorDisplayController : MonoBehaviour
     {
         string input = CalculatorInputManager.inputSequence;
         //char[] symbols ={'×','÷','+','-'};
-        CalculatorInputManager.inputSequence = Multiply(input);
+        try
+        {
+            CalculatorInputManager.inputSequence = Add(input);
+        }
+        catch
+        {
+            CalculatorInputManager.inputSequence = "ERROR";
+        }
     }
 }

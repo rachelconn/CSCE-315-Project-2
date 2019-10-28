@@ -12,7 +12,7 @@ public class UISpacer : MonoBehaviour
         float padRatio = 1.0f / 7.0f;
         GameObject[,] buttons = new GameObject[5, 4];
         string[,] labels = {
-            {"B", "×", "÷", "←" },
+            {"C", "×", "÷", "←" },
             {"7", "8", "9", "+" },
             {"4", "5", "6", "-" },
             {"1", "2", "3", "=" },

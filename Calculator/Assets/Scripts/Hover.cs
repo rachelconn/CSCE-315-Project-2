@@ -12,7 +12,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     float hoverSecs;
     Image buttonImage;
 
-    public readonly float HOVER_TIME_CUTOFF = 1;
+    public readonly float HOVER_TIME_CUTOFF = 0.5f;
 
     void Start()
     {
@@ -61,8 +61,16 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
-            if (datum != "←")
+            if (datum == "C")
             {
+                CalculatorInputManager.inputSequence = "";
+            }
+            else if (datum != "←")
+            {
+                if (CalculatorInputManager.inputSequence == "ERROR")
+                {
+                    CalculatorInputManager.inputSequence = "";
+                }
                 CalculatorInputManager.inputSequence += datum;
             }
             else
