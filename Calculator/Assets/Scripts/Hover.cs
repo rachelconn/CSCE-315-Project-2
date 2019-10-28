@@ -4,18 +4,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     bool hovering;
     float hoverSecs;
+    Image buttonImage;
 
-    public readonly float HOVER_TIME_CUTOFF = 2;
+    public readonly float HOVER_TIME_CUTOFF = 1;
 
     void Start()
     {
         hovering = false;
         hoverSecs = 0f;
+        buttonImage = gameObject.GetComponent<Image>();
     }
 
     void Update()
@@ -34,6 +37,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             buttonClicked();
             hoverSecs = 0f;
         }
+        buttonImage.color = Color.Lerp(Color.white, Color.gray, hoverSecs / HOVER_TIME_CUTOFF);
     }
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
@@ -50,31 +54,22 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         TextMeshProUGUI tmp = gameObject.GetComponentInChildren<TextMeshProUGUI>();
         string datum = tmp.text.Trim();
-        Debug.Log(datum);
-        if (CalculatorInputManager.evaluated)
+        if (datum == "=")
         {
-            CalculatorInputManager.inputSequence = datum;
-            CalculatorInputManager.evaluated = false;
+            CalculatorDisplayController.Evaluate();
+            CalculatorInputManager.evaluated = true;
         }
         else
         {
-            if (datum == "=")
+            if (datum != "←")
             {
-                CalculatorDisplayController.Evaluate();
-                CalculatorInputManager.evaluated = true;
+                CalculatorInputManager.inputSequence += datum;
             }
             else
             {
-                if (datum != "←")
-                {
-                    CalculatorInputManager.inputSequence += datum;
-                }
-                else
-                {
-                    string old = CalculatorInputManager.inputSequence;
-                    old = old.Substring(0, Math.Max(old.Length - 1, 0));
-                    CalculatorInputManager.inputSequence = old;
-                }
+                string old = CalculatorInputManager.inputSequence;
+                old = old.Substring(0, Math.Max(old.Length - 1, 0));
+                CalculatorInputManager.inputSequence = old;
             }
         }
     }

@@ -27,7 +27,7 @@ public class CalculatorDisplayController : MonoBehaviour
     private static string ToTilda(string equation)
     {
         string retval = "";
-        char[] mdas = { '*', '/', '+', '-' };
+        char[] mdas = { '×', '÷', '+', '-' };
 
         // Loop through the string.
         for (int i = 0; i < equation.Length; ++i)
@@ -51,8 +51,8 @@ public class CalculatorDisplayController : MonoBehaviour
         Debug.Log(textToEvaluate);
         //Set up the variables 
         textToEvaluate = ToTilda(textToEvaluate);
-        char[] md = { '*', '/' };
-        char[] mdas = { '*', '/', '+', '~' };
+        char[] md = { '×', '÷' };
+        char[] mdas = { '×', '÷', '+', '~' };
         int i;
         string front;
         string back;
@@ -158,9 +158,11 @@ public class CalculatorDisplayController : MonoBehaviour
 
             // Insert the result back into the equation before looping back again
             textToEvaluate = front + equals.ToString() + temp + back;
+            Debug.Log(textToEvaluate);
+            Debug.Log(equals);
 
         }
-
+        Debug.Log(textToEvaluate);
         // just do it ✔
         CalculatorInputManager.inputSequence = textToEvaluate;
     }
