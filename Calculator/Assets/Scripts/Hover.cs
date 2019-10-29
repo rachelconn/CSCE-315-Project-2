@@ -52,6 +52,10 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void buttonClicked()
     {
+        if (CalculatorInputManager.inputSequence == "ERROR")
+        {
+            CalculatorInputManager.inputSequence = "";
+        }
         TextMeshProUGUI tmp = gameObject.GetComponentInChildren<TextMeshProUGUI>();
         string datum = tmp.text.Trim();
         if (datum == "=")
@@ -67,10 +71,6 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
             else if (datum != "←")
             {
-                if (CalculatorInputManager.inputSequence == "ERROR")
-                {
-                    CalculatorInputManager.inputSequence = "";
-                }
                 CalculatorInputManager.inputSequence += datum;
             }
             else
