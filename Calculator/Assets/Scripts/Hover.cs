@@ -12,7 +12,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     float hoverSecs;
     Image buttonImage;
 
-    public readonly float HOVER_TIME_CUTOFF = 0.5f;
+    public readonly float HOVER_TIME_CUTOFF = 1f;
 
     void Start()
     {
